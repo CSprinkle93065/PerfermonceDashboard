@@ -36,14 +36,14 @@ class MainWindow(QMainWindow):
             flags |= Qt.WindowType.WindowStaysOnTopHint
         self.setWindowFlags(flags)
 
-        # Size: 10% of primary screen resolution
+        # Size: 12% width / 25% height of primary screen, with absolute minimums
         app = QApplication.instance()
         if app is not None:
             screen = app.primaryScreen()
             if screen is not None:
                 geom = screen.geometry()
-                w = int(geom.width() * 0.1)
-                h = int(geom.height() * 0.1)
+                w = max(int(geom.width() * 0.12), 400)
+                h = max(int(geom.height() * 0.25), 500)
                 self.setFixedSize(w, h)
 
         # Central widget & main layout

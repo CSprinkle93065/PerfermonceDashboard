@@ -42,8 +42,8 @@ def _default_settings() -> Settings:
     screen = app.primaryScreen()
     if screen is not None:
         geom = screen.geometry()
-        window_width = geom.width() // 10
-        window_height = geom.height() // 10
+        window_width = max(int(geom.width() * 0.12), 400)
+        window_height = max(int(geom.height() * 0.25), 500)
         return Settings(
             window_x=geom.width() - window_width,
             window_y=geom.height() - window_height,

@@ -47,14 +47,15 @@ def test_main_window_is_frameless() -> None:
     assert "FramelessWindowHint" in dump, "MainWindow must set Qt.WindowType.FramelessWindowHint"
 
 
-def test_window_size_is_10_percent_of_screen() -> None:
-    """TC-LAYOUT-02: AST must reference screen geometry and 0.1 or 10%."""
+def test_window_size_uses_12_percent_width_25_percent_height() -> None:
+    """TC-LAYOUT-02: AST must reference screen geometry and 0.12 / 0.25."""
     tree = _parse_main_window_ast()
     dump = ast.dump(tree, annotate_fields=False)
     has_screen_ref = "primaryScreen" in dump or "geometry" in dump or "screen" in dump
-    has_ten_percent = "0.1" in dump or "10" in dump or "0_1" in dump
-    assert has_screen_ref and has_ten_percent, (
-        "MainWindow must compute size as 10% of screen resolution"
+    has_twelve_percent = "0.12" in dump or "0_12" in dump or "12" in dump
+    has_twentyfive_percent = "0.25" in dump or "0_25" in dump or "25" in dump
+    assert has_screen_ref and has_twelve_percent and has_twentyfive_percent, (
+        "MainWindow must compute size as max(12% width, 400) and max(25% height, 500)"
     )
 
 

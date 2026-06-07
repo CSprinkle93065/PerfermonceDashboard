@@ -114,9 +114,9 @@ def test_position_memory_defaults_to_lower_right() -> None:
     except Exception:
         pytest.skip("QApplication / primaryScreen unavailable")
 
-    # Window size is 10% of screen; default position = screen - window size
-    window_width = screen_geom.width() // 10
-    window_height = screen_geom.height() // 10
+    # Window size is max(12% of screen, 400x500); default position = screen - window size
+    window_width = max(int(screen_geom.width() * 0.12), 400)
+    window_height = max(int(screen_geom.height() * 0.25), 500)
     expected_x = screen_geom.width() - window_width
     expected_y = screen_geom.height() - window_height
 
