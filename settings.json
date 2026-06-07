@@ -1,0 +1,9 @@
+{
+  "refresh_interval_ms": 1000,
+  "always_on_top": true,
+  "show_utilization": true,
+  "show_temperatures": true,
+  "show_fan_speeds": true,
+  "window_x": 1383,
+  "window_y": 864
+}
